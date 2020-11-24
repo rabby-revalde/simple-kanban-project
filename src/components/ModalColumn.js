@@ -1,16 +1,16 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const ModalTask = ({ handleSubmitAddTask, show, onHide, colId }) => {
+const ModalColumn = ({ handleClickAddColumn, show, onHide }) => {
   const [newVal, setNewVal] = React.useState(" ");
 
   const handleChange = (e) => {
     setNewVal(e.target.value);
   };
 
-  const onSubmitTask = (e) => {
+  const onSubmitColumn = (e) => {
     e.preventDefault();
-    handleSubmitAddTask(colId, newVal);
+    handleClickAddColumn(newVal);
     setNewVal(" ");
     onHide();
   };
@@ -25,13 +25,13 @@ const ModalTask = ({ handleSubmitAddTask, show, onHide, colId }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add New Task
+          Add New Column
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={onSubmitTask}>
+        <Form onSubmit={onSubmitColumn}>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Add Task</Form.Label>
+            <Form.Label>Add Column</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter a Task"
@@ -47,4 +47,4 @@ const ModalTask = ({ handleSubmitAddTask, show, onHide, colId }) => {
     </Modal>
   );
 };
-export default ModalTask;
+export default ModalColumn;
