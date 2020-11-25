@@ -12,14 +12,12 @@ function App() {
   const [tasks, setTasks] = useState(null);
   const [modalShow, setModalShow] = useState(false);
 
-  const apiUrl = process.env.API_URL || "http://localhost:1337";
-
   useEffect(() => {
-    fetch(apiUrl + "/columns")
+    fetch(process.env.API_URL || "http://localhost:1337" + "/columns")
       .then((res) => res.json())
       .then((result) => setColumns(result));
 
-    fetch(apiUrl + "/tasks")
+    fetch(process.env.API_URL || "http://localhost:1337" + "/tasks")
       .then((res) => res.json())
       .then((result) => setTasks(result));
   }, []);
@@ -27,7 +25,7 @@ function App() {
   const handleClickAddColumn = (label) => {
     // const label = prompt("What's the column name?");
     label &&
-      fetch(apiUrl + "/columns", {
+      fetch(process.env.API_URL || "http://localhost:1337" + "/columns", {
         method: "POST",
         body: JSON.stringify({
           // id: columns.length + 1,
@@ -46,7 +44,7 @@ function App() {
 
   const handleSubmitAddTask = (columnId, label) => {
     label &&
-      fetch(apiUrl + "/tasks", {
+      fetch(process.env.API_URL || "http://localhost:1337" + "/tasks", {
         method: "POST",
         body: JSON.stringify({
           Label: label,
@@ -61,9 +59,12 @@ function App() {
   };
 
   const handleClickColumnDelete = async (colId) => {
-    await fetch(apiUrl + "/columns/" + colId, {
-      method: "DELETE",
-    });
+    await fetch(
+      process.env.API_URL || "http://localhost:1337" + "/columns/" + colId,
+      {
+        method: "DELETE",
+      }
+    );
     const updatedCol = columns.filter((del) => del.id !== colId);
     setColumns(updatedCol);
   };
