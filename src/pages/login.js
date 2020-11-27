@@ -19,14 +19,18 @@ const LoginPage = () => {
       return;
     }
 
-    fetch(`http://localhost:1337/auth/local`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        identifier: identifier.value,
-        password: password.value,
-      }),
-    })
+    fetch(
+      process.env.REACT_APP + "/auth/local" ||
+        `http://localhost:1337/auth/local`,
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          identifier: identifier.value,
+          password: password.value,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((result) => {
         localStorage.setItem("rabzKanban", result.jwt);
