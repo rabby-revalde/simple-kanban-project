@@ -23,11 +23,11 @@ const IndexPage = () => {
   useEffect(() => {
     //  ====================== FETCH API's ======================
 
-    fetch(process.env.REACT_APP || localUrl + "/columns")
+    fetch(process.env.REACT_APP_API_URL || localUrl + "/columns")
       .then((res) => res.json())
       .then((result) => setColumns(result));
 
-    fetch(process.env.REACT_APP || localUrl + "/tasks")
+    fetch(process.env.REACT_APP_API_URL || localUrl + "/tasks")
       .then((res) => res.json())
       .then((result) => setTasks(result));
   }, []);
@@ -43,7 +43,7 @@ const IndexPage = () => {
 
   const handleClickAddColumn = (label) => {
     label &&
-      fetch(process.env.REACT_APP || localUrl + "/columns", {
+      fetch(process.env.REACT_APP_API_URL || localUrl + "/columns", {
         method: "POST",
         body: JSON.stringify({
           Label: label,
@@ -58,7 +58,7 @@ const IndexPage = () => {
 
   const handleSubmitAddTask = (columnId, label) => {
     label &&
-      fetch(process.env.REACT_APP || localUrl + "/tasks", {
+      fetch(process.env.REACT_APP_API_URL || localUrl + "/tasks", {
         method: "POST",
         body: JSON.stringify({
           Label: label,
@@ -73,7 +73,7 @@ const IndexPage = () => {
   };
 
   const handleClickColumnDelete = (colId) => {
-    fetch(process.env.REACT_APP || localUrl + "/columns/" + colId, {
+    fetch(process.env.REACT_APP_API_URL || localUrl + "/columns/" + colId, {
       method: "DELETE",
     });
     const updatedCol = columns.filter((del) => del.id !== colId);
@@ -82,7 +82,7 @@ const IndexPage = () => {
 
   const handleClickTaskDelete = (taskId) => {
     // console.log(taskId);
-    fetch(process.env.REACT_APP || localUrl + "/tasks/" + taskId, {
+    fetch(process.env.REACT_APP_API_URL || localUrl + "/tasks/" + taskId, {
       method: "DELETE",
     });
     const updatedTask = tasks.filter((del) => del.id !== taskId);

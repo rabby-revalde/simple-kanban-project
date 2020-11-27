@@ -20,7 +20,7 @@ const LoginPage = () => {
     }
 
     fetch(
-      process.env.REACT_APP + "/auth/local" ||
+      process.env.REACT_APP_API_URL + "/auth/local" ||
         `http://localhost:1337/auth/local`,
       {
         method: "POST",
