@@ -60,7 +60,7 @@ const Columns = ({
                       task={task}
                       handleClickTaskDelete={handleClickTaskDelete}
                       columnId={column.id}
-                      getTasksById={getTasksById}
+                      // getTasksById={getTasksById}
                     />
                   ))}
 
